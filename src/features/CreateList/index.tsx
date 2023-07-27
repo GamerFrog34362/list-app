@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import publicIcon from "../assets/icons/public.svg"
-import privateIcon from "../assets/icons/private.svg"
+import publicIcon from "./assets/public.svg"
+import privateIcon from "./assets/private.svg"
 import { ReactSVG } from "react-svg"
 
 export default function CreateList() {
@@ -11,7 +11,7 @@ export default function CreateList() {
   useEffect(() => {}, [])
   return (
     <form
-      className="w-1/3 h-4/5 bg-blue-primary rounded-md flex flex-col p-5 dark:bg-dark-blue-primary"
+      className="w-1/3 h-4/5 bg-blue-primary rounded-md flex flex-col p-5 dark:bg-dark-blue-primary mx-auto mt-10"
       onSubmit={handleSubmit}
     >
       <h1 className="text-5xl font-bold text-light-grey text-center pb-10">Create new List!</h1>
@@ -40,25 +40,24 @@ export default function CreateList() {
         maxLength={250}
         className=" h-20 text-xl w-full outline-none mb-10 text-blue-secondary rounded-md break-words"
       />
-      <div className="flex flex-row m-10">
-        <img
+      <div className="flex flex-row m-5">
+        <ReactSVG
           src={publicIcon}
-          className={`w-20 h-20 ml-auto mr-5 cursor-pointer ${
+          className={`w-20 h-20 ml-auto mr-5 cursor-pointer fill-white ${
             privacySetting === "public" ? "border-4 border-blue-secondary rounded-md" : ""
           }`}
-          onClick={(e) => setPrivacySetting("public")}
-          tabIndex={0}
+          onClick={() => setPrivacySetting("public")}
         />
-        <img
+
+        <ReactSVG
           src={privateIcon}
-          className={`w-20 h-20 mr-auto ml-5 cursor-pointer ${
+          className={`w-20 h-20 mr-auto ml-5 cursor-pointer fill-white ${
             privacySetting !== "public" ? "border-4 border-blue-secondary rounded-md" : ""
           }`}
-          onClick={(e) => setPrivacySetting("private")}
-          tabIndex={0}
+          onClick={() => setPrivacySetting("private")}
         />
       </div>
-      <h1 className="text-light-grey mx-auto text-2xl">{`${privacySetting[0].toUpperCase()}${privacySetting.slice(
+      <h1 className="text-light-grey mx-auto text-2xl mb-2">{`${privacySetting[0].toUpperCase()}${privacySetting.slice(
         1
       )}`}</h1>
       <button

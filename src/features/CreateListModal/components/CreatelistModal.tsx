@@ -3,21 +3,24 @@ import publicIcon from "../assets/public.svg"
 import privateIcon from "../assets/private.svg"
 import xIcon from "../assets/x.svg"
 import { ReactSVG } from "react-svg"
+import { useDisableBodyScroll } from "../hooks/useDisableBodyScroll"
 
 export function CreateListModal({ isVisable, onClose }: ModalProps) {
   const [listName, setListName] = useState("")
   const [listDescription, setListDescription] = useState("")
   const [privacySetting, setPrivacySetting] = useState("public")
 
+  useDisableBodyScroll(isVisable)
+
   if (!isVisable) return null
   return (
     <div className="fixed inset-0 bg-black bg-opacity-25 backdrop-blur-sm flex justify-center items-center">
       <form
-        className="w-1/3 h-4/5 bg-blue-primary rounded-md flex flex-col p-5 dark:bg-dark-blue-primary mx-auto mt-10"
+        className="w-1/3 h-4/5 bg-blue-primary rounded-md flex flex-col p-5 dark:bg-dark-blue-primary mx-auto"
         onSubmit={handleSubmit}
       >
         <button className="text-white ml-auto" onClick={onClose}>
-          <img src={xIcon} alt="x" className="w-10" />
+          <ReactSVG src={xIcon} className="w-10 fill-white" />
         </button>
         <h1 className="text-5xl font-bold text-light-grey text-center pb-10">Create new List!</h1>
 

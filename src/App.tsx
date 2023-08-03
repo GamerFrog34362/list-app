@@ -1,29 +1,21 @@
-import { useEffect } from "react"
-
 import { Routes, BrowserRouter as Router, Route } from "react-router-dom"
+
+import Home from "./features/Home"
+import List from "./features/List"
+import Error from "./features/Error"
 import NavagationBar from "./features/NavagationBar"
-import Home from "./pages/Home"
+import Login from "./features/Login"
 
 export default function App() {
-  useEffect(() => {
-    const theme = localStorage.getItem("theme") ?? "light"
-    localStorage.setItem("theme", theme)
-
-    if (theme === "light") {
-      document.documentElement.classList.add("light")
-    }
-
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark")
-    }
-  }, [])
-
   return (
-    <div id="App">
+    <div id="App" className="font-default">
       <Router>
         <NavagationBar />
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/list/:id" element={<List />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="*" element={<Error />} />
         </Routes>
       </Router>
     </div>

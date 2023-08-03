@@ -1,1 +1,2 @@
-export { CreateListModal } from "./components/CreatelistModal"
+import { CreateListModal } from "./components/CreatelistModal"
+export default CreateListModal
